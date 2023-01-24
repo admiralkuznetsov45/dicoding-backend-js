@@ -1,8 +1,18 @@
+const { addBookshelfHandler } = require('./bookshelf');
+
+
 const routes = [
+    // {
+    //     method: 'POST',
+    //     path: '/bookshelf',
+    //     handler: addBookshelfHandler,
+    // }, 
     {
-        method: 'POST',
+        method: 'GET',
         path: '/bookshelf',
-        handler: () => {},
+        handler: (request,reply)=>{
+            return 'hello world'
+        } ,
     }, 
 ]
 
