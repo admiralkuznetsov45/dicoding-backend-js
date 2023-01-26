@@ -7,7 +7,7 @@ const init = async () => {
 
     //menjalankan server 
     const server = Hapi.server({
-        port:8000,
+        port:9000,
         host: 'localhost',
     })
 
