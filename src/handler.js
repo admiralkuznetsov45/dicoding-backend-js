@@ -2,14 +2,14 @@ const { nanoid } = require('nanoid');
 const bookshelfs = require('./bookshelf');
 
 const addBookshelfHandler = (request,h) => {
-    const {title , tags , body} = request.payload ; 
+    const {name , year , author , summary , publisher , pageCount , readPage , reading} = request.payload ; 
 
     const id = nanoid(16);
-    const createdAt = new Date().toISOString();
-    const updatedAt = createdAt ; 
+    const insertedAt = new Date().toISOString();
+    const updatedAt = insertedAt ; 
 
     const newBookshelf = {
-        title , tags , body , id , createdAt , updatedAt , 
+      name , year , author , summary , publisher , pageCount , readPage , reading , id , insertedAt , updatedAt , 
     };
 
     bookshelfs.push(newBookshelf);
@@ -76,7 +76,7 @@ const editBookshelfByIdHandler = (request,h) => {
   const {id} = request.params 
 
   //mengambil payload 
-  const {title , tags , body} = request.payload
+  const {name , year , author , summary , publisher , pageCount , readPage , reading} = request.payload
   const updatedAt = new Date().toISOString();
 
   //mengambil index bookshelf 
@@ -88,10 +88,15 @@ const editBookshelfByIdHandler = (request,h) => {
     
       //... spread operator digunakan untuk mempertahankan nilai bookshelf[index] yg tidak perlu diubah
       ...bookshelfs[index],
-      title, 
-      tags,
-      body,
-      updatedAt,
+      name , 
+      year , 
+      author , 
+      summary , 
+      publisher ,
+      pageCount , 
+      readPage , 
+      reading,
+      updatedAt
     }
   
 
