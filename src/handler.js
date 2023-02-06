@@ -46,7 +46,7 @@ const addBookshelfHandler = (request,h) => {
           status: 'success',
           message: 'Buku berhasil ditambahkan',
           data: {
-            bookshelfId: id,
+            bookId: id,
           },
         });
         response.code(201);
@@ -105,20 +105,37 @@ const getAllBookshelfHandler = (request, h) => {
       status: 'success',
       data: {
         //response nama sesuai yang dicari
-        bookshelfs: filterBookName.map((bookshelf) => ({
+        books: filterBookName.map((bookshelf) => ({
           id: bookshelf.id,
-          name: bookshelf.name,
+          name: bookshelf.name, 
           publisher: bookshelf.publisher,
         })),
       },
     })
     .code(200);
 
-  return response;
+  return response
   }
   
+  if(reading){
 
+    const filteredBookReading = bookshelfs.filter(
+      (bookshelf) => Number(bookshelf.reading) === Number(reading)
+    )
 
+    const response = h.response({
+      status: 'success',
+      data: {
+        books: filteredBookReading.map((bookshelf) => ({
+          id: bookshelf.id,
+          name: bookshelf.name,
+          publisher: bookshelf.publisher,
+        })),
+      },
+    }).code(200)
+
+    return response
+  }
 }
 
 
@@ -126,20 +143,20 @@ const getAllBookshelfHandler = (request, h) => {
 const getBookshelfByIdHandler = (request, h) => {
   const {id} = request.params;
 
-  const bookshelf = bookshelfs.filter((n) => n.id === id)[0]
+  const book = bookshelfs.filter((n) => n.id === id)[0]
 
-  if (bookshelf !== undefined ) {
+  if (book !== undefined ) {
     return {
       status : 'success' , 
       data : {
-        bookshelf,
+        book,
       }
     }
   }
 
   const response = h.response({
     status: "fail",
-    message: "Bookshelf tidak ditemukan",
+    message: "Buku tidak ditemukan",
   })
 
   response.code(404)

@@ -8,34 +8,27 @@ const Joi = require('joi');
 const routes = [
     {
         method: 'POST',
-        path: '/bookshelf',
+        path: '/books',
         handler: addBookshelfHandler,
-        // options: {
-        //     validate: {
-        //         payload: Joi.object({
-        //             name: Joi.string().min(1).max(140)
-        //         })
-        //     }
-        // }
     }, 
     {
         method: 'GET',
-        path: '/bookshelf',
+        path: '/books',
         handler: getAllBookshelfHandler,
     }, 
     {
         method: 'GET',
-        path: '/bookshelf/{id}',
+        path: '/books/{id}',
         handler: getBookshelfByIdHandler,
       },
     {
         method:'PUT',
-        path:'/bookshelf/{id}',
+        path:'/books/{id}',
         handler: editBookshelfByIdHandler,
     },
     {
         method: 'DELETE',
-        path: '/bookshelf/{id}',
+        path: '/books/{id}',
         handler: deleteBookshelfIdHandler,
       }
 ]
