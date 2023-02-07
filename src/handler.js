@@ -248,6 +248,9 @@ const deleteBookshelfIdHandler = (request , h ) => {
       status: 'success', 
       message: 'Buku berhasil dihapus'
     })
+
+    response.code(200)
+    return response
   }
 
   const response = h.response({
